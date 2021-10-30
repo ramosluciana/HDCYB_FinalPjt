@@ -1,0 +1,50 @@
+Public IP Address: 80.233.60.166Processor: Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+System: Windows 10.0.19041
+Machine: AMD64
+Hostname: DESKTOP-CNO1COC
+Private IP Address: 192.168.56.1
+Public IP Address: 80.233.60.166Processor: Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+System: Windows 10.0.19041
+Machine: AMD64
+Hostname: DESKTOP-CNO1COC
+Private IP Address: 192.168.56.1
+Public IP Address: 80.233.55.52Processor: Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+System: Windows 10.0.19041
+Machine: AMD64
+Hostname: DESKTOP-CNO1COC
+Private IP Address: 192.168.56.1
+Public IP Address: 80.233.55.52Processor: Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+System: Windows 10.0.19041
+Machine: AMD64
+Hostname: DESKTOP-CNO1COC
+Private IP Address: 192.168.56.1
+Public IP Address: 80.233.55.52Processor: Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+System: Windows 10.0.19041
+Machine: AMD64
+Hostname: DESKTOP-CNO1COC
+Private IP Address: 192.168.56.1
+Public IP Address: 80.233.55.52Processor: Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+System: Windows 10.0.19041
+Machine: AMD64
+Hostname: DESKTOP-CNO1COC
+Private IP Address: 192.168.56.1
+Public IP Address: 80.233.55.52Processor: Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+System: Windows 10.0.19041
+Machine: AMD64
+Hostname: DESKTOP-CNO1COC
+Private IP Address: 192.168.56.1
+Public IP Address: 80.233.55.52Processor: Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+System: Windows 10.0.19041
+Machine: AMD64
+Hostname: DESKTOP-CNO1COC
+Private IP Address: 192.168.56.1
+Public IP Address: 80.233.55.52Processor: Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+System: Windows 10.0.19041
+Machine: AMD64
+Hostname: DESKTOP-CNO1COC
+Private IP Address: 192.168.56.1
+Public IP Address: 80.233.55.52Processor: Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+System: Windows 10.0.19041
+Machine: AMD64
+Hostname: DESKTOP-CNO1COC
+Private IP Address: 192.168.56.1
